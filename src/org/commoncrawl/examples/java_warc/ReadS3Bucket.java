@@ -12,6 +12,7 @@ import edu.cmu.lemurproject.WarcRecord;
 import java.io.DataInputStream;
 import java.io.InputStream;
 import java.util.List;
+import java.util.zip.GZIPInputStream;
 
 /**
  * author: Mark Watson
@@ -32,7 +33,8 @@ public class ReadS3Bucket {
           System.out.println("+ key: " + key);
           S3Object object = s3.getObject(new GetObjectRequest(bucketName, key));
           InputStream objectData = object.getObjectContent();
-          DataInputStream inStream = new DataInputStream(objectData);
+          GZIPInputStream gzInputStream=new GZIPInputStream(objectData);
+          DataInputStream inStream = new DataInputStream(gzInputStream);
 
           WarcRecord thisWarcRecord;
           while ((thisWarcRecord = WarcRecord.readNextWarcRecord(inStream)) != null) {
