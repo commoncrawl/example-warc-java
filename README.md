@@ -2,6 +2,8 @@
 
 Mark Watson 2013/1/16
 
+NOTE: this code is a work in progress and is untested! I suggest waiting a week before trying it (please).
+
 There are two examples for now (more to come):
 
 - ReadWARC - reads a local WARC file that was manually copied from S3 storage to your laptop
@@ -43,5 +45,18 @@ As you can see in the exmple code, I pass the buck and prefix as:
 
 ````````
     process(s3, "aws-publicdatasets", "common-crawl/crawl-data/CC-MAIN-2013-20", 2);
+````````
+
+After doing a git pull to get these examples on an EC2 instance, build and run using:
+
+````````
+ant
+java -cp "lib/*:out/production/java_warc" org.commoncrawl.examples.java_warc.ReadS3Bucket
+````````
+
+Note, on my test EC2, I changed the java_warc.properties file using:
+
+````````
+jdk.home.1.7=/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64
 ````````
 
