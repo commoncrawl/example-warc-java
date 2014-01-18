@@ -11,9 +11,6 @@ There are two examples for now (more to come):
 
 A JDK 1.7 or later is required (JDK 1.6 will not work).
 
-For now, I provide IntelliJ 13 project files to run these examples and al required 3rd party JAR files.
-It is TBD to fetch dependencies using maven and get rid of the IntelliJ dependency.
-
 Special thanks to the developers of the edu.cmu.lemurproject package from Carnegie Mellon University. This code
 reads WARC files and the source code is included in the src subdirectory.
 
@@ -33,6 +30,14 @@ You can copy one segment to your laptop (segment files are less than 1 gigabutes
 ````````
 aws get aws-publicdatasets/common-crawl/crawl-data/CC-MAIN-2013-48/segments/1386163035819/warc/CC-MAIN-20131204131715-00002-ip-10-33-133-15.ec2.internal.warc.gz CC-MAIN-20131204131715-00002-ip-10-33-133-15.ec2.internal.warc.gz
 ````````
+
+Then run this example using:
+
+````````
+mvn install
+mvn exec:java -Dexec.mainClass=org.commoncrawl.examples.java_warc.ReadWARC
+````````
+
 
 ## ReadS3Bucket
 
@@ -56,18 +61,11 @@ the edu.cmu.lemurproject package):
 sudo yum install java-1.7.0-openjdk-devel.x86_64
 ````````
 
-Note, on my test EC2, I changed the java_warc.properties file using:
-
-````````
-jdk.home.1.7=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.51.x86_64
-````````
-
 After doing a git pull to get these examples on an EC2 instance, build and run using:
 
 ````````
-ant
-/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.51.x86_64/bin/java -Xmx1g -cp "lib/*:out/production/java_warc" org.commoncrawl.examples.java_warc.ReadS3Bucket
+mvn install
+mvn exec:java -Dexec.mainClass=org.commoncrawl.examples.java_warc.ReadS3Bucket
 ````````
 
-Note: I also tested this using a micro EC2 instance: works (remove -Xmx1g from the last command line).
-
+Note: I also tested this using a micro EC2 instance.
