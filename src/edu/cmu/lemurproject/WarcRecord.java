@@ -433,6 +433,7 @@ public class WarcRecord {
   }
   
   public void addHeaderMetadata(String key, String value) {
+    //System.out.println("+-- WarRecord.addHeaderMetadata key=" + key + " value=" + value);
     // don't allow addition of known keys
     if (key.equals("WARC-Type")) { return; }
     if (key.equals("WARC-Date")) { return; }
@@ -453,7 +454,7 @@ public class WarcRecord {
   }
   
   public String getHeaderMetadataItem(String key) {
-    
+    //System.out.println("+++ WarRecord.getHeaderMetadataItem key=" + key);  // WARC-Target-URI
     if (key.equals("WARC-Type")) { return warcHeader.recordType; }
     if (key.equals("WARC-Date")) { return warcHeader.dateString; }
     if (key.equals("WARC-Record-ID")) { return warcHeader.UUID; }

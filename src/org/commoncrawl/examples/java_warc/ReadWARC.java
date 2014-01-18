@@ -12,17 +12,19 @@ import edu.cmu.lemurproject.WarcHTMLResponseRecord;
 public class ReadWARC {
 
   public static void main(String[] args) throws IOException {
+    //String inputWarcFile="/Users/markw/ccrawl/CC-MAIN-TEXT-20130516092621-00000-ip-10-60-113-184.ec2.internal.warc.gz";
     String inputWarcFile="/Users/markw/ccrawl/CC-MAIN-20131204131715-00002-ip-10-33-133-15.ec2.internal.warc.gz";
     GZIPInputStream gzInputStream=new GZIPInputStream(new FileInputStream(inputWarcFile));
     DataInputStream inStream=new DataInputStream(gzInputStream);
 
     WarcRecord thisWarcRecord;
     while ((thisWarcRecord=WarcRecord.readNextWarcRecord(inStream))!=null) {
+      System.out.println("%% thisWarcRecord.getHeaderRecordType() = " + thisWarcRecord.getHeaderRecordType());
       if (thisWarcRecord.getHeaderRecordType().equals("response")) {
         WarcHTMLResponseRecord htmlRecord=new WarcHTMLResponseRecord(thisWarcRecord);
         String thisTargetURI=htmlRecord.getTargetURI();
         String thisContentUtf8 = htmlRecord.getRawRecord().getContentUTF8();
-        System.out.println("$$$$$$$$$$ " + thisTargetURI + "\n\n" + thisContentUtf8 + "\n");
+        //System.out.println("$$$$$$$$$$ " + thisTargetURI + "\n\n" + thisContentUtf8 + "\n");
       }
     }
     inStream.close();

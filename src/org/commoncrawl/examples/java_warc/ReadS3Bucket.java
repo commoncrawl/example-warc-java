@@ -23,7 +23,6 @@ public class ReadS3Bucket {
 
     ObjectListing list = s3.listObjects(bucketName, prefix);
 
-   outer:
     do {  // reading summaries code derived from stackoverflow example posted by Alberto A. Medina:
 
       List<S3ObjectSummary> summaries = list.getObjectSummaries();
@@ -38,9 +37,11 @@ public class ReadS3Bucket {
 
           WarcRecord thisWarcRecord;
           while ((thisWarcRecord = WarcRecord.readNextWarcRecord(inStream)) != null) {
+            //System.out.println("-- thisWarcRecord.getHeaderRecordType() = " + thisWarcRecord.getHeaderRecordType());
             if (thisWarcRecord.getHeaderRecordType().equals("response")) {
               WarcHTMLResponseRecord htmlRecord = new WarcHTMLResponseRecord(thisWarcRecord);
               String thisTargetURI = htmlRecord.getTargetURI();
+              System.out.println("thisTargetURI: " + thisTargetURI);
               String thisContentUtf8 = htmlRecord.getRawRecord().getContentUTF8();
               System.out.println("___________ " + thisTargetURI + "\n\n" + thisContentUtf8 + "\n");
             }
@@ -49,7 +50,7 @@ public class ReadS3Bucket {
         } catch (Exception ex) {
           ex.printStackTrace();
         }
-        if (++count >= max) break outer;
+        if (++count >= max) return;
       }
       list = s3.listNextBatchOfObjects(list);
     } while (list.isTruncated());
@@ -57,6 +58,6 @@ public class ReadS3Bucket {
 
   static public void main(String[] args) {
     AmazonS3Client s3 = new AmazonS3Client();
-    process(s3, "aws-publicdatasets", "common-crawl/crawl-data/CC-MAIN-2013-20", 2);
+    process(s3, "aws-publicdatasets", "common-crawl/crawl-data/CC-MAIN-2013-48", 20);
   }
 }

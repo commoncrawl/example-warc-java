@@ -1,13 +1,15 @@
 # Java examples for processing Common Crawl WARC files
 
-Mark Watson 2013/1/16
+Mark Watson 2013/1/18
 
-NOTE: this code is a work in progress and is untested! I suggest waiting a week before trying it (please).
+NOTE: this code is a work in progress.
 
 There are two examples for now (more to come):
 
 - ReadWARC - reads a local WARC file that was manually copied from S3 storage to your laptop
 - ReadS3Bucket - this should be run on an EC2 instance for fast access to S3
+
+A JDK 1.7 or later is required (JDK 1.6 will not work).
 
 For now, I provide IntelliJ 13 project files to run these examples and al required 3rd party JAR files.
 It is TBD to fetch dependencies using maven and get rid of the IntelliJ dependency.
@@ -47,16 +49,22 @@ As you can see in the exmple code, I pass the buck and prefix as:
     process(s3, "aws-publicdatasets", "common-crawl/crawl-data/CC-MAIN-2013-20", 2);
 ````````
 
-After doing a git pull to get these examples on an EC2 instance, build and run using:
+Note, using the Common Crawl AMI (I run it on a Medium EC2 instance), I installed JDK 1.7 (required for
+the edu.cmu.lemurproject package):
 
 ````````
-ant
-java -cp "lib/*:out/production/java_warc" org.commoncrawl.examples.java_warc.ReadS3Bucket
+yum install java-1.7.0-openjdk-devel.x86_64
 ````````
 
 Note, on my test EC2, I changed the java_warc.properties file using:
 
 ````````
-jdk.home.1.7=/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64
+jdk.home.1.7=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.51.x86_64
 ````````
 
+After doing a git pull to get these examples on an EC2 instance, build and run using:
+
+````````
+ant
+/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.51.x86_64/bin/java -Xmx1g -cp "lib/*:out/production/java_war org.commoncrawl.examples.java_warc.ReadS3Bucket````````
+````````
