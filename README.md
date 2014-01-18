@@ -53,7 +53,7 @@ Note, using the Common Crawl AMI (I run it on a Medium EC2 instance), I installe
 the edu.cmu.lemurproject package):
 
 ````````
-yum install java-1.7.0-openjdk-devel.x86_64
+sudo yum install java-1.7.0-openjdk-devel.x86_64
 ````````
 
 Note, on my test EC2, I changed the java_warc.properties file using:
@@ -66,5 +66,8 @@ After doing a git pull to get these examples on an EC2 instance, build and run u
 
 ````````
 ant
-/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.51.x86_64/bin/java -Xmx1g -cp "lib/*:out/production/java_war org.commoncrawl.examples.java_warc.ReadS3Bucket````````
+/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.51.x86_64/bin/java -Xmx1g -cp "lib/*:out/production/java_warc" org.commoncrawl.examples.java_warc.ReadS3Bucket
 ````````
+
+Note: I also tested this using a micro EC2 instance: works (remove -Xmx1g from the last command line).
+
