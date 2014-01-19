@@ -68,4 +68,5 @@ mvn install
 mvn exec:java -Dexec.mainClass=org.commoncrawl.examples.java_warc.ReadS3Bucket
 ````````
 
-Note: I also tested this using a micro EC2 instance.
+Note: I also tested this using a micro EC2 instance. The time to process two gzipped segment files
+(of size a little less than 1 gigabyte each) is about 45 seconds on a micro EC2 instance.
