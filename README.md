@@ -48,7 +48,7 @@ public class ReadS3Bucket {
   static public void process(AmazonS3 s3, String bucketName, String prefix, int max) {
 ````````
 
-As you can see in the exmple code, I pass the buck and prefix as:
+As you can see in the example code, I pass the bucket and prefix as:
 
 ````````
     process(s3, "aws-publicdatasets", "common-crawl/crawl-data/CC-MAIN-2013-20", 2);

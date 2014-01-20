@@ -21,6 +21,9 @@ public class ReadS3Bucket {
   static public void process(AmazonS3 s3, String bucketName, String prefix, int max) {
     int count = 0;
 
+    // use a callback class for handling WARC record data:
+    IProcessWarcRecord processor = new SampleProcessWarcRecord();
+
     ObjectListing list = s3.listObjects(bucketName, prefix);
 
     do {  // reading summaries code derived from stackoverflow example posted by Alberto A. Medina:
@@ -41,9 +44,9 @@ public class ReadS3Bucket {
             if (thisWarcRecord.getHeaderRecordType().equals("response")) {
               WarcHTMLResponseRecord htmlRecord = new WarcHTMLResponseRecord(thisWarcRecord);
               String thisTargetURI = htmlRecord.getTargetURI();
-              System.out.println("thisTargetURI: " + thisTargetURI);
               String thisContentUtf8 = htmlRecord.getRawRecord().getContentUTF8();
-              System.out.println("___________ " + thisTargetURI + "\n\n" + thisContentUtf8 + "\n");
+              // handle WARC record content:
+              processor.process(thisTargetURI, thisContentUtf8);
             }
           }
           inStream.close();
