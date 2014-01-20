@@ -57,6 +57,9 @@ public class ReadS3Bucket {
       }
       list = s3.listNextBatchOfObjects(list);
     } while (list.isTruncated());
+    // done processing all WARC records:
+    processor.done();
+
   }
 
   static public void main(String[] args) {

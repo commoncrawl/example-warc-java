@@ -33,5 +33,7 @@ public class ReadWARC {
       }
     }
     inStream.close();
+    // done processing all WARC records:
+    processor.done();
   }
 }

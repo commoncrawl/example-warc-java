@@ -13,4 +13,9 @@ public class SampleProcessWarcRecord implements IProcessWarcRecord {
     System.out.println("url: " + url);
     System.out.println("content: " + url + "\n\n" + content + "\n");
   }
+
+  @Override
+  public void done() {
+    // place any code hear to save data, etc.
+  }
 }

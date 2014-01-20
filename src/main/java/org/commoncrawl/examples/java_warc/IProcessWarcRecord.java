@@ -9,4 +9,5 @@ package org.commoncrawl.examples.java_warc;
  */
 public interface IProcessWarcRecord {
   public void process(String url, String content);
+  public void done();  // called once when there is no more data to be processed
 }
