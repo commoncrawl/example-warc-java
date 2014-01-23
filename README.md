@@ -61,7 +61,24 @@ the edu.cmu.lemurproject package):
 sudo yum install java-1.7.0-openjdk-devel.x86_64
 ````````
 
-After doing a git pull to get these examples on an EC2 instance, build and run using:
+TODO: In addition to installing Java 7, you also need to configure it 
+using 
+
+`sudo alternatives --config javac`
+`sudo alternatives --config java`
+
+TODO: Maven needs to be installed and it's not available through yum 
+without some gymnastics.
+
+After cloning the Github repository to get these examples on an EC2 instance:
+
+
+```
+git clone https://github.com/commoncrawl/example-warc-java.git
+cd example-warc-java
+```
+
+build and run using:
 
 ````````
 mvn install
@@ -70,3 +87,10 @@ mvn exec:java -Dexec.mainClass=org.commoncrawl.examples.java_warc.ReadS3Bucket
 
 Note: I also tested this using a micro EC2 instance. The time to process two gzipped segment files
 (of size a little less than 1 gigabyte each) is about 45 seconds on a micro EC2 instance.
+
+### License 
+
+This code is licensed under the *TBD license*.  Please give back to
+Common Crawl if you found it useful.
+
+
