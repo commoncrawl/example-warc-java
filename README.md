@@ -1,13 +1,12 @@
 # Java examples for processing Common Crawl WARC files
 
-Mark Watson 2013/1/18
+Mark Watson 2013/1/26
 
-NOTE: this code is a work in progress.
-
-There are two examples for now (more to come):
+There are two Java examples and one Clojure example for now (more to come):
 
 - ReadWARC - reads a local WARC file that was manually copied from S3 storage to your laptop
 - ReadS3Bucket - this should be run on an EC2 instance for fast access to S3
+- clojure-examples/src/clojure-examples/core.clj - reads a local WARC file that was manually copied from S3 storage to your laptop
 
 A JDK 1.7 or later is required (JDK 1.6 will not work).
 
@@ -15,7 +14,7 @@ Special thanks to the developers of the edu.cmu.lemurproject package from Carneg
 reads WARC files and the source code is included in the src subdirectory.
 
 I have just started experimenting with Common Crawl data. I plan on adding a Hadoop/Elastic MapReduce example
-and also examples using other JVM languages like Clojure and JRuby.
+and also more examples using other JVM languages like Clojure and JRuby.
 
 ## ReadWARC
 
@@ -88,9 +87,25 @@ mvn exec:java -Dexec.mainClass=org.commoncrawl.examples.java_warc.ReadS3Bucket
 Note: I also tested this using a micro EC2 instance. The time to process two gzipped segment files
 (of size a little less than 1 gigabyte each) is about 45 seconds on a micro EC2 instance.
 
-### License 
+## Clojure Examples
 
-This code is licensed under the *TBD license*.  Please give back to
+You need to install the commoncrawl JAR file in your local maven repository:
+
+````````
+mvn install:install-file -Durl=file:repo -DpomFile=pom.xml -DgroupId=local -DartifactId=commoncrawl -Dversion=0.0.1 -Dpackaging=jar -Dfile=target/commoncrawl-0.0.1.jar
+````````
+
+Then  you can:
+
+````````
+cd clojure-examples
+lein deps
+lein test
+````````
+
+## License 
+
+This code is licensed under the Apache 2 license.  Please give back to
 Common Crawl if you found it useful.
 
 

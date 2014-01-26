@@ -3,3 +3,5 @@
 target
 example-warc*
 *~
+clojure-examples/target
+clojure-examples/.lein*
