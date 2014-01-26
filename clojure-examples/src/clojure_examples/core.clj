@@ -6,7 +6,7 @@
 
 
 (defn single-warc-file []
-  (let [input-warc-file "/Users/markw/ccrawl/CC-MAIN-20131204131715-00002-ip-10-33-133-15.ec2.internal.warc.gz"
+  (let [input-warc-file "CC-MAIN-20131204131715-00002-ip-10-33-133-15.ec2.internal.warc.gz"
         gz-input-stream (GZIPInputStream. (FileInputStream. input-warc-file))
         in-stream (DataInputStream. gz-input-stream)]
    (defn read-warc-record []
