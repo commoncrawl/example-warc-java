@@ -1,4 +1,4 @@
-# Java examples for processing Common Crawl WARC files
+# Java and Clojure examples for processing Common Crawl WARC files
 
 Mark Watson 2013/1/26
 
