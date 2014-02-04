@@ -69,7 +69,6 @@ public class WarcFileRecordReader<K extends WritableComparable, V extends Writab
   private long totalNumBytesRead=0;
 
   public WarcFileRecordReader(Configuration conf, InputSplit split) throws IOException {
-    this.fs = FileSystem.get(conf);
     if (split instanceof FileSplit) {
       this.filePathList=new Path[1];
       this.filePathList[0]=((FileSplit)split).getPath();
@@ -78,7 +77,9 @@ public class WarcFileRecordReader<K extends WritableComparable, V extends Writab
     } else {
       throw new IOException("InputSplit is not a file split or a multi-file split - aborting");
     }
-
+    
+    fs = this.filePathList[0].getFileSystem(conf);
+    
     // get the total file sizes
     for (int i=0; i < filePathList.length; i++) {
       totalFileSize += fs.getFileStatus(filePathList[i]).getLen();

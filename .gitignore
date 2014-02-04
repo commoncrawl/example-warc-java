@@ -6,3 +6,8 @@ example-warc*
 clojure-examples/target
 clojure-examples/.lein*
 clojure-examples/clojure-examples-for-common-crawl.i*
+
+# Eclipse ignores
+.classpath
+.project
+.settings/
