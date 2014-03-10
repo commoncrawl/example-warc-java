@@ -24,7 +24,7 @@ Assuming that you have the aws command line tools installed, you can list the co
 aws ls -1 aws-publicdatasets/common-crawl/crawl-data/CC-MAIN-2013-48/  | head -6
 ````````
 
-You can copy one segment to your laptop (segment files are less than 1 gigabutes) using:
+You can copy one segment to your laptop (segment files are less than 1 gigabytes) using:
 
 ````````
 aws get aws-publicdatasets/common-crawl/crawl-data/CC-MAIN-2013-48/segments/1386163035819/warc/CC-MAIN-20131204131715-00002-ip-10-33-133-15.ec2.internal.warc.gz CC-MAIN-20131204131715-00002-ip-10-33-133-15.ec2.internal.warc.gz
