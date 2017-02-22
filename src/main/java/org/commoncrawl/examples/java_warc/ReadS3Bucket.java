@@ -64,6 +64,6 @@ public class ReadS3Bucket {
 
   static public void main(String[] args) {
     AmazonS3Client s3 = new AmazonS3Client();
-    process(s3, "aws-publicdatasets", "common-crawl/crawl-data/CC-MAIN-2013-48", 20);
+    process(s3, "commoncrawl", "crawl-data/CC-MAIN-2013-48", 20);
   }
 }

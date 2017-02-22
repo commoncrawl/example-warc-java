@@ -12,7 +12,7 @@ mvn install:install-file -Durl=file:repo -DpomFile=pom.xml -DgroupId=local -Dart
 in the parent directory. Copy a single test WARC file from S3:
 
 ````````
-aws get aws-publicdatasets/common-crawl/crawl-data/CC-MAIN-2013-48/segments/1386163035819/warc/CC-MAIN-20131204131715-00002-ip-10-33-133-15.ec2.internal.warc.gz CC-MAIN-20131204131715-00002-ip-10-33-133-15.ec2.internal.warc.gz
+aws s3 cp s3://commoncrawl/crawl-data/CC-MAIN-2013-48/segments/1386163035819/warc/CC-MAIN-20131204131715-00002-ip-10-33-133-15.ec2.internal.warc.gz .
 ````````
 
 Then you can run 

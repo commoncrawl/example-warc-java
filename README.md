@@ -21,13 +21,13 @@ and also more examples using other JVM languages like Clojure and JRuby.
 Assuming that you have the aws command line tools installed, you can list the contents of a crawl using:
 
 ````````
-aws s3 ls s3://aws-publicdatasets/common-crawl/crawl-data/CC-MAIN-2014-10/ --recursive | head -6
+aws s3 ls s3://commoncrawl/crawl-data/CC-MAIN-2014-10/ --recursive | head -6
 ````````
 
 You can copy one segment to your laptop (segment files are less than 1 gigabytes) using:
 
 ````````
-aws s3 cp s3://aws-publicdatasets/common-crawl/crawl-data/CC-MAIN-2014-10/segments/1394023864559/warc/CC-MAIN-20140305125104-00002-ip-10-183-142-35.ec2.internal.warc.gz .
+aws s3 cp s3://commoncrawl/crawl-data/CC-MAIN-2014-10/segments/1394023864559/warc/CC-MAIN-20140305125104-00002-ip-10-183-142-35.ec2.internal.warc.gz .
 ````````
 
 Then run this example using:
@@ -50,7 +50,7 @@ public class ReadS3Bucket {
 As you can see in the example code, I pass the bucket and prefix as:
 
 ````````
-    process(s3, "aws-publicdatasets", "common-crawl/crawl-data/CC-MAIN-2014-10", 2);
+    process(s3, "commoncrawl", "crawl-data/CC-MAIN-2014-10", 2);
 ````````
 
 Note, using the Common Crawl AMI (I run it on a Medium EC2 instance), I installed JDK 1.7 (required for
